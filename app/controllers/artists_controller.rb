@@ -16,6 +16,12 @@ class ArtistsController < ApplicationController
 		erb :'/artists/show'
 	end
 
+	get '/artists/:slug/edit' do
+		@artist = Artist.find_by_slug(params[:slug])
+
+		erb :'/artists/edit'
+	end
+
 	post '/artists' do
 		Artist.create(params[:artist])
 		

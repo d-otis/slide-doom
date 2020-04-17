@@ -18,14 +18,14 @@ class ApplicationsController < ApplicationController
 	end
 
 	post '/applications' do
-		artist = Artist.find(session[:user_id])
+		artist = Artist.find(session[:artist_id])
 		institution = Institution.find_by(params[:institution])
 		app = institution.applications.create(artist: artist)
 		# this is kind of klunky
 		# can i sneak the artist id into the params hash?
 		app.update(params[:application])
 
-		redirect "/applications/#{application.id}"
+		redirect "/applications/#{app.id}"
 	end
 
 end
