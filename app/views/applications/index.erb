@@ -1,14 +1,23 @@
-<div class="col-sm-6 offset-sm-3">
-	<h2><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h2>
+<% if flash.has?(:message) %>
+		<div class="col-sm-12">
+			<div class="alert alert-danger text-center"><%= flash[:message] %></div>	
+		</div>
+<% end %>
 
-	<% @applications.each do |app| %>
-		<ul class="list-group mb-5">
-			<li class="list-group-item bg-light"><h3><%= app.submission_call %></h3></li>
-			<li class="list-group-item"><strong>Institution:</strong> <%= app.institution.name %></li>
-			<li class="list-group-item"><strong>Artist Statement:</strong> <%= app.statement %></li>
-			<li class="list-group-item"><strong>Work Sample:</strong> <br><img class="img-fluid" src="<%= app.photo_url %>" alt=""></li>
-			<li class="list-group-item"><a href="/applications/<%= app.id %>/edit" class="btn btn-outline-secondary">Edit</a></li>
-		</ul>
-	<% end %>
+<div class="row">
+	<div class="col-sm-6 offset-sm-3">
+		<h2><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h2>
+
+		<% @applications.each do |app| %>
+			<ul class="list-group mb-5">
+				<li class="list-group-item bg-light"><h3><%= app.submission_call %></h3></li>
+				<li class="list-group-item"><strong>Institution:</strong> <%= app.institution.name %></li>
+				<li class="list-group-item"><strong>Artist Statement:</strong> <%= app.statement %></li>
+				<li class="list-group-item"><strong>Work Sample:</strong> <br><img class="img-fluid" src="<%= app.photo_url %>" alt=""></li>
+				<li class="list-group-item"><a href="/applications/<%= app.id %>/edit" class="btn btn-outline-secondary">Edit</a></li>
+			</ul>
+		<% end %>
+	</div>
 </div>
+
 

@@ -1,4 +1,5 @@
 class ApplicationsController < ApplicationController
+	use Rack::Flash
 
 	get '/applications' do
 		@artist = current_user
@@ -18,8 +19,8 @@ class ApplicationsController < ApplicationController
 			@application = Application.find(params[:id])
 			erb :'applications/show'
 		else
-			"error"
-			# redirect "/applications"
+			flash[:message] = "Application not found."
+			redirect "/applications"
 		end
 	end
 
