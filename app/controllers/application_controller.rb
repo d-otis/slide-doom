@@ -12,11 +12,21 @@ class ApplicationController < Sinatra::Base
 
 	helpers do
 		def logged_in?
-			!!session[:artist_id]
+			!!current_user
 		end
 
 		def current_user
-			Artist.find(session[:artist_id])
+			@current_user ||= Artist.find(session[:artist_id]) if session[:artist_id]
+		end
+
+		def login(email, password)
+			artist = Artist.find_by(email: email)
+			if artist && artist.authenticate(password)
+				session[:artist_id] = artist.id
+				redirect "/artists/#{artist.id}"
+			else
+				redirect "/login"
+			end
 		end
 	end
 
