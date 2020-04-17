@@ -14,18 +14,24 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id' do
+		# protect against url hacking
 		@application = Application.find(params[:id])
 
 		erb :'applications/show'
 	end
 
+	get '/applications/:id/edit' do
+		# implement measures against URL hacking here
+		@application = Application.find(params[:id])
+		@institutions = Institution.all
+
+		erb :'/applications/edit'
+	end
+
 	post '/applications' do
-		artist = Artist.find(session[:artist_id])
-		institution = Institution.find_by(params[:institution])
-		app = institution.applications.create(artist: artist)
-		# this is kind of klunky
-		# can i sneak the artist id into the params hash?
-		app.update(params[:application])
+		artist = current_user
+		app = Application.create(params[:application])
+		app.update(artist: current_user)
 
 		redirect "/applications/#{app.id}"
 	end

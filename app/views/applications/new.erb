@@ -5,9 +5,9 @@
 
 		<div class="form-group">
 			<label for="institution_select">Select Institution</label>
-			<select class="form-control" id="institution_select" name="institution[name]">
+			<select class="form-control" id="institution_select" name="application[institution_id]">
 				<% @institutions.each do |inst| %>
-				<option><%= inst.name %></option>
+				<option value="<%= inst.id %>"><%= inst.name %></option>
 				<% end %>
 			</select>
 		</div>

@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 			artist = Artist.find_by(email: email)
 			if artist && artist.authenticate(password)
 				session[:artist_id] = artist.id
-				redirect "/artists/#{artist.id}"
+				redirect "/artists/#{artist.slug}"
 			else
 				redirect "/login"
 			end
