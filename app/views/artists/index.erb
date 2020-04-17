@@ -2,7 +2,7 @@
 	<h1>Artist Index</h1>
 	<div class="list-group">
 		<% @artists.each do |artist| %>
-		<a href="#" class="list-group-item list-group-item-action"><%= artist.name %> // <%= artist.email %></a>
+		<a href="/artists/<%= artist.slug %>" class="list-group-item list-group-item-action"><%= artist.name %> // <%= artist.email %></a>
 		<% end %>
 	</div>
 </div>

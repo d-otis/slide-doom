@@ -7,8 +7,8 @@ class InstitutionsController < ApplicationController
 		erb :'/institutions/index'
 	end
 
-	get "/institutions/:id" do
-		@institution = Institution.find(params[:id])
+	get "/institutions/:slug" do
+		@institution = Institution.find_by_slug(params[:slug])
 
 		erb :'/institutions/show'
 	end

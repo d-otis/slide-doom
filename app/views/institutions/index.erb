@@ -1,5 +1,5 @@
 <ul> <h1>Institutions</h1>
 <% @institutions.each do |inst| %>
-	<li><a href="/institutions/<%= inst.id %>"><%= inst.name %></li></a>	
+	<li><a href="/institutions/<%= inst.slug %>"><%= inst.name %></li></a>	
 <% end %>
 </ul>
