@@ -1,7 +1,8 @@
 class ApplicationsController < ApplicationController
 
 	get '/applications' do
-		@applications = Application.all
+		@artist = current_user
+		@applications = @artist.applications
 
 		erb :'applications/index'
 	end
@@ -13,6 +14,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id' do
+		@application = Application.find(params[:id])
 
 		erb :'applications/show'
 	end

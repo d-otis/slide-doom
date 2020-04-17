@@ -1,9 +1,8 @@
-<div class="col-sm-6">
-	<h1>Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h1>
+<div class="col-sm-6 offset-sm-3">
+	<h1><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h1>
 
 	<% @applications.each do |app| %>
 		<ul class="list-group mb-5">
-			<li class="list-group-item">Artist Name:<%= app.artist.name %></li>
 			<li class="list-group-item">Submission Call:  <%= app.submission_call %></li>
 			<li class="list-group-item">Institution: <%= app.institution.name %></li>
 			<li class="list-group-item">Artist Statement: <%= app.statement %></li>
