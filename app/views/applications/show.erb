@@ -2,10 +2,11 @@
 	<h1>Application <span class="badge badge-pill badge-secondary"><%# @application.count %></span></h1>
 
 		<ul class="list-group mb-5">
-			<li class="list-group-item">Submission Call:  <%= @application.submission_call %></li>
-			<li class="list-group-item">Institution: <%= @application.institution.name %></li>
-			<li class="list-group-item">Artist Statement: <%= @application.statement %></li>
-			<li class="list-group-item">Work Sample: <br><img class="mt-2 img-fluid" src="<%= @application.photo_url %>" alt=""></li>
+			<li class="list-group-item"><strong>Submission Call:</strong>  <%= @application.submission_call %></li>
+			<li class="list-group-item"><strong>Institution:</strong> <%= @application.institution.name %></li>
+			<li class="list-group-item"><strong>Artist Statement:</strong> <%= @application.statement %></li>
+			<li class="list-group-item"><strong>Work Sample:</strong> <br><img class="mt-2 img-fluid" src="<%= @application.photo_url %>" alt=""></li>
+			<li class="list-group-item"><a href="/applications/<%= @application.id %>/edit" class="btn btn-outline-secondary">Edit Application</a></li>
 		</ul>
 </div>
 

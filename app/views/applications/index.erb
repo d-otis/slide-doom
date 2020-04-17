@@ -3,10 +3,10 @@
 
 	<% @applications.each do |app| %>
 		<ul class="list-group mb-5">
-			<li class="list-group-item">Submission Call:  <%= app.submission_call %></li>
+			<li class="list-group-item bg-secondary text-white">Submission Call:  <%= app.submission_call %></li>
 			<li class="list-group-item">Institution: <%= app.institution.name %></li>
 			<li class="list-group-item">Artist Statement: <%= app.statement %></li>
-			<li class="list-group-item">Work Sample: <br><img class="" src="<%= app.photo_url %>" alt=""></li>
+			<li class="list-group-item">Work Sample: <br><img class="img-fluid" src="<%= app.photo_url %>" alt=""></li>
 			<li class="list-group-item"><a href="/applications/<%= app.id %>/edit" class="btn btn-outline-secondary">Edit</a></li>
 		</ul>
 	<% end %>

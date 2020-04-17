@@ -7,7 +7,7 @@
 			<label for="institution_select">Select Institution</label>
 			<select class="form-control" id="institution_select" name="institution[name]">
 				<% @institutions.each do |inst| %>
-				<option <%=  %>><%= inst.name %></option>
+				<option <%= 'selected' if inst.id == @application.institution_id %>><%= inst.name %></option>
 				<% end %>
 			</select>
 		</div>
