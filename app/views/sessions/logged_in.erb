@@ -1,19 +1,19 @@
 <% if logged_in? %>
-<li class="nav-item">
-	<a class="nav-link" href="/artists/<%= current_user.slug %>">My Profile</a>
-</li>
-<li class="nav-item">
-	<a class="nav-link" href="/applications">My Applications</a>
-</li>
-<li class="nav-item">
-	<a class="nav-link" href="/logout">Logout</a>
-</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/artists/<%= current_user.slug %>">My Profile</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/applications">My Applications</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/logout">Logout</a>
+	</li>
 <% else %>
-</li>
-<li class="nav-item">
-	<a class="nav-link" href="/login">Login</a>
-</li>
-<li class="nav-item">
-	<a class="nav-link" href="/register">Register</a>
-</li>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/login">Login</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/register">Register</a>
+	</li>
 <% end %>
