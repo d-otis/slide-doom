@@ -6,7 +6,7 @@ class Artist < ActiveRecord::Base
 	has_secure_password
 
 	validates :name, presence: true
-	validates :email, presence: true
+	validates :email, presence: true, uniqueness: true
 
 	def slug
 		name.downcase.gsub(/[!?@ +,&]/, "-").gsub(/[().']/, "").gsub("$", "s").squeeze("-")
