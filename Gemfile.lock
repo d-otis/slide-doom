@@ -26,6 +26,8 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     rack (2.2.2)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (2.0.8.1)
       rack
     rake (13.0.1)
@@ -52,6 +54,7 @@ DEPENDENCIES
   activerecord (~> 5.2)
   bcrypt
   pry
+  rack-flash3
   rake
   require_all
   sinatra
