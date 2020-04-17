@@ -1,5 +1,8 @@
-<ul> <h1>Institutions</h1>
-<% @institutions.each do |inst| %>
-	<li><a href="/institutions/<%= inst.slug %>"><%= inst.name %></li></a>	
-<% end %>
-</ul>
+<div class="col-sm-6 offset-sm-3">
+	<div class="list-group">
+		<% @institutions.each do |inst| %>
+		<a href="/institutions/<%= inst.slug %>" class="list-group-item list-group-item-action"><%= inst.name %></a>
+		<% end %>
+	</div>
+</div>
+
