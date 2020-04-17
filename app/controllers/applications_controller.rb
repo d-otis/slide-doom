@@ -14,10 +14,13 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id' do
-		# protect against url hacking
-		@application = Application.find(params[:id])
-
-		erb :'applications/show'
+		if current_user.application_ids.include?(params[:id])
+			@application = Application.find(params[:id])
+			erb :'applications/show'
+		else
+			"error"
+			# redirect "/applications"
+		end
 	end
 
 	get '/applications/:id/edit' do
