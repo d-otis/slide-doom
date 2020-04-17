@@ -25,11 +25,15 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id/edit' do
-		# implement measures against URL hacking here
-		@application = Application.find(params[:id])
-		@institutions = Institution.all
+		if current_user.application_ids.include?(params[:id])
+			@application = Application.find(params[:id])
+			@institutions = Institution.all
+			erb :'applications/edit'
+		else
+			flash[:message] = "Application not found."
+			redirect "/applications"
+		end
 
-		erb :'/applications/edit'
 	end
 
 	post '/applications' do
