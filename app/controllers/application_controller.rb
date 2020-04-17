@@ -10,4 +10,11 @@ class ApplicationController < Sinatra::Base
 		erb :index
 	end
 
+	helpers do
+		def logged_in?
+			!!session[:artist_id]
+		end
+
+	end
+
 end
