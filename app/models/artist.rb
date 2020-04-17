@@ -5,6 +5,9 @@ class Artist < ActiveRecord::Base
 	has_many :applications
 	has_secure_password
 
+	validates :name, presence: true
+	validates :email, presence: true
+
 	def slug
 		name.downcase.gsub(/[!?@ +,&]/, "-").gsub(/[().']/, "").gsub("$", "s").squeeze("-")
 	end
