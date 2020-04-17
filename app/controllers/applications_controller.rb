@@ -36,4 +36,11 @@ class ApplicationsController < ApplicationController
 		redirect "/applications/#{app.id}"
 	end
 
+	patch '/applications/:id' do
+		app = Application.find(params[:id])
+		app.update(params[:application])
+
+		redirect "applications/#{app.id}"
+	end
+
 end
