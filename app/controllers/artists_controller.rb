@@ -11,12 +11,14 @@ class ArtistsController < ApplicationController
 	end
 
 	get '/artists/:slug' do
+		# protect against URL hack
 		@artist = Artist.find_by_slug(params[:slug])
 
 		erb :'/artists/show'
 	end
 
 	get '/artists/:slug/edit' do
+		# protect against URL hack
 		@artist = Artist.find_by_slug(params[:slug])
 
 		erb :'/artists/edit'
