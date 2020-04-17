@@ -27,4 +27,11 @@ class ArtistsController < ApplicationController
 		
 		redirect '/login'
 	end
+
+	patch '/artists/:slug' do
+		artist = Artist.find_by_slug(params[:slug])
+		artist.update(params[:artist])
+
+		redirect "/artists/#{artist.slug}"
+	end
 end
