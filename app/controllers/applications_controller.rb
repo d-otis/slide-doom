@@ -15,7 +15,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id' do
-		if current_user.application_ids.include?(params[:id].to_i)
+		if current_user.application_ids.include?(params[:id])
 			@application = Application.find(params[:id])
 			erb :'applications/show'
 		else
@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id/edit' do
-		if current_user.application_ids.include?(params[:id].to_i)
+		if current_user.application_ids.include?(params[:id])
 			@application = Application.find(params[:id])
 			@institutions = Institution.all
 			erb :'applications/edit'
