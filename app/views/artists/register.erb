@@ -1,10 +1,4 @@
-<% if flash.has?(:message) %>
-<div class="col-sm-6 offset-sm-3">
-	<% flash[:message].each do |msg| %>
-	<div class="alert alert-danger text-center"><%= msg %></div>
-	<% end %>
-</div>
-<% end %>
+<%= erb :"/artists/messages/errors/register" %>
 
 <div class="col-sm-6 offset-sm-3">
 		<form action="/artists" method="POST">

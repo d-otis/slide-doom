@@ -1,5 +1,4 @@
 class ArtistsController < ApplicationController
-	use Rack::Flash
 
 	get '/artists' do
 		@artists = Artist.all
@@ -28,12 +27,14 @@ class ArtistsController < ApplicationController
 	post '/artists' do
 		artist = Artist.new(params[:artist])
 		if artist.save
-			flash[:message] = "Account Successfully Created. Please log in."
+			flash[:success] = "Account Successfully Created. Please log in."
 			redirect '/login'
 		else
-			flash[:message] = artist.errors.collect {|k,v| "#{k.capitalize} #{v}."}
+			flash[:error] = artist.errors.collect {|k,v| "#{k.capitalize} #{v}."}
+			
 			redirect "/register"
 		end
+
 	end
 
 	patch '/artists/:slug' do

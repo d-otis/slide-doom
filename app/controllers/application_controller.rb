@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+	use Rack::Flash, :accessorize => [:success, :error]
 
 	configure do
 		set :views, "app/views"

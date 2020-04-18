@@ -1,5 +1,4 @@
 class ApplicationsController < ApplicationController
-	use Rack::Flash, :accessorize => [:success, :error]
 
 	get '/applications' do
 		@artist = current_user
