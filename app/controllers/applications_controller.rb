@@ -45,6 +45,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	patch '/applications/:id' do
+		# guard against URL hacking?
 		app = Application.find(params[:id])
 		if app.update(params[:application])
 			flash[:message] = "Successfully updated application."
@@ -57,6 +58,14 @@ class ApplicationsController < ApplicationController
 
 			redirect "/applications/#{app.id}/edit"
 		end
+	end
+
+	delete '/applications/:id' do
+		# guard against URL hacking?
+		application = Application.find(params[:id])
+		application.delete
+
+		redirect '/applications'
 	end
 
 end
