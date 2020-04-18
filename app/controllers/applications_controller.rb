@@ -38,10 +38,18 @@ class ApplicationsController < ApplicationController
 
 	post '/applications' do
 		artist = current_user
-		app = Application.create(params[:application])
-		app.update(artist: current_user)
+		app = Application.new(params[:application])
+		app.artist = current_user
 
-		redirect "/applications/#{app.id}"
+		if app.save
+			flash[:success] = "Application successfully created!"
+			redirect "/applications/#{app.id}"
+		else
+			flash[:error] = app.errors.messages.collect do |k, v|
+				"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
+			end
+			redirect "applications/new"
+		end
 	end
 
 	patch '/applications/:id' do

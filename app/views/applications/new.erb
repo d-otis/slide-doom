@@ -1,4 +1,13 @@
 
+<% if flash.has?(:error) %>
+		<div class="col-sm-6 offset-sm-3">
+			<% flash[:error].each do |msg| %>
+			<div class="alert alert-danger text-center"><%= msg %></div>
+			<% end %>
+		</div>
+<% end %>
+
+
 <div class="col-sm-6 offset-sm-3">
 	<h1>Application for: <%= current_user.name %></h1>
 	<form action="/applications" method="POST" class="mt-3">
