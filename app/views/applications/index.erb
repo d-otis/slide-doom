@@ -1,10 +1,16 @@
-<% if flash.has?(:message) %>
+<% if flash.has?(:error) %>
 		<div class="col-sm-12">
-			<div class="alert alert-danger text-center"><%= flash[:message] %></div>	
+			<div class="alert alert-danger text-center"><%= flash[:error] %></div>	
+		</div>
+<% end %>
+<% if flash.has?(:success) %>
+		<div class="col-sm-12">
+			<div class="alert alert-danger text-center"><%= flash[:success] %></div>	
 		</div>
 <% end %>
 
-<%= '<div class="row">' if flash.has?(:message) %>
+
+<%= '<div class="row">' if flash.has?(:error) || flash.has?(:success) %>
 	<div class="col-sm-6 offset-sm-3">
 		<h2><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h2>
 
@@ -18,6 +24,6 @@
 			</ul>
 		<% end %>
 	</div>
-<%= '</div>' if flash.has?(:message) %>
+<%= '</div>' if flash.has?(:error) || flash.has?(:success) %>
 
 

@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-	use Rack::Flash
+	use Rack::Flash, :accessorize => [:success, :error]
 
 	get '/applications' do
 		@artist = current_user
@@ -19,7 +19,7 @@ class ApplicationsController < ApplicationController
 			@application = Application.find(params[:id])
 			erb :'applications/show'
 		else
-			flash[:message] = "Application not found."
+			flash[:error] = "Application not found."
 			redirect "/applications"
 		end
 	end
@@ -30,7 +30,7 @@ class ApplicationsController < ApplicationController
 			@institutions = Institution.all
 			erb :'applications/edit'
 		else
-			flash[:message] = "Application not found."
+			flash[:error] = "Application not found."
 			redirect "/applications"
 		end
 
@@ -48,11 +48,11 @@ class ApplicationsController < ApplicationController
 		# guard against URL hacking?
 		app = Application.find(params[:id])
 		if app.update(params[:application])
-			flash[:message] = "Successfully updated application."
+			flash[:success] = "Successfully updated application."
 
 			redirect "applications/#{app.id}"
 		else
-			flash[:message] = app.errors.messages.collect do |k, v|
+			flash[:error] = app.errors.messages.collect do |k, v|
 				"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
 			end
 
