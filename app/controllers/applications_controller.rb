@@ -5,6 +5,8 @@ class ApplicationsController < ApplicationController
 		@artist = current_user
 		@applications = @artist.applications
 
+		# binding.pry
+
 		erb :'applications/index'
 	end
 
@@ -15,7 +17,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id' do
-		if current_user.application_ids.include?(params[:id])
+		if current_user.application_ids.include?(params[:id].to_i)
 			@application = Application.find(params[:id])
 			erb :'applications/show'
 		else
@@ -25,7 +27,7 @@ class ApplicationsController < ApplicationController
 	end
 
 	get '/applications/:id/edit' do
-		if current_user.application_ids.include?(params[:id])
+		if current_user.application_ids.include?(params[:id].to_i)
 			@application = Application.find(params[:id])
 			@institutions = Institution.all
 			erb :'applications/edit'
