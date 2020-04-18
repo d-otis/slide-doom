@@ -5,8 +5,6 @@ class ApplicationsController < ApplicationController
 		@artist = current_user
 		@applications = @artist.applications
 
-		# binding.pry
-
 		erb :'applications/index'
 	end
 

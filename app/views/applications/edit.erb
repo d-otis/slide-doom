@@ -1,5 +1,5 @@
 
-<div class="col-sm-6">
+<div class="col-sm-6 offset-sm-3">
 	<h1>Application for: <%= current_user.name %></h1>
 	<form action="/applications/<%= @application.id %>" method="POST">
 		<input type="hidden" name="_method" value="PATCH">
