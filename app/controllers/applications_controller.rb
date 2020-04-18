@@ -46,9 +46,17 @@ class ApplicationsController < ApplicationController
 
 	patch '/applications/:id' do
 		app = Application.find(params[:id])
-		app.update(params[:application])
+		if app.update(params[:application])
+			flash[:message] = "Successfully updated application."
 
-		redirect "applications/#{app.id}"
+			redirect "applications/#{app.id}"
+		else
+			flash[:message] = app.errors.messages.collect do |k, v|
+				"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
+			end
+
+			redirect "/applications/#{app.id}/edit"
+		end
 	end
 
 end
