@@ -1,16 +1,8 @@
-
-<% if flash.has?(:error) %>
-		<div class="col-sm-6 offset-sm-3">
-			<% flash[:error].each do |msg| %>
-			<div class="alert alert-danger text-center"><%= msg %></div>
-			<% end %>
-		</div>
-<% end %>
-
+<%= erb :'/applications/messages/errors/new' %>
 
 <div class="col-sm-6 offset-sm-3">
-	<h1>Application for: <%= current_user.name %></h1>
-	<form action="/applications" method="POST" class="mt-3">
+	<h2>Application for: <%= current_user.name %></h2>
+	<form action="/applications" method="POST" class="my-3">
 
 		<div class="form-group">
 			<label for="institution_select">Select Institution</label>

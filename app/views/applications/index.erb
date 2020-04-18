@@ -1,18 +1,10 @@
-<% if flash.has?(:error) %>
-		<div class="col-sm-12">
-			<div class="alert alert-danger text-center"><%= flash[:error] %></div>	
-		</div>
-<% end %>
-<% if flash.has?(:success) %>
-		<div class="col-sm-12">
-			<div class="alert alert-danger text-center"><%= flash[:success] %></div>	
-		</div>
-<% end %>
+<%= erb :"/applications/messages/errors/index" %>
+<%= erb :"/applications/messages/success/index" %>
 
 
 <%= '<div class="row">' if flash.has?(:error) || flash.has?(:success) %>
 	<div class="col-sm-6 offset-sm-3">
-		<h2><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h2>
+		<h3><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h3>
 
 		<% @applications.each do |app| %>
 			<ul class="list-group mb-5">
