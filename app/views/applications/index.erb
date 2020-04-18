@@ -4,7 +4,7 @@
 		</div>
 <% end %>
 
-<div class="row">
+<%= '<div class="row">' if flash.has?(:message) %>
 	<div class="col-sm-6 offset-sm-3">
 		<h2><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h2>
 
@@ -18,6 +18,6 @@
 			</ul>
 		<% end %>
 	</div>
-</div>
+<%= '</div>' if flash.has?(:message) %>
 
 
