@@ -1,4 +1,5 @@
-## Artist
+# Slide Doom
 
-1. account for updates failing and displaying error message
-1. require presence of all fields on application
+
+## To Do
+1. figure out why Rack Flash messages won't work on artists_controller
