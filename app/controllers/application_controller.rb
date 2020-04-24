@@ -1,3 +1,5 @@
+require_relative "../models/concerns/slugify"
+
 class ApplicationController < Sinatra::Base
 	use Rack::Flash, :accessorize => [:success, :error]
 
