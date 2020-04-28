@@ -1,7 +1,8 @@
 require_relative "../models/concerns/slugify"
 
 class ApplicationController < Sinatra::Base
-	use Rack::Flash, :accessorize => [:success, :error]
+	use Rack::Flash
+	register Sinatra::ActiveRecordExtension
 
 	configure do
 		set :views, "app/views"
@@ -35,6 +36,10 @@ class ApplicationController < Sinatra::Base
 		def logout
 			session.clear
 			redirect "/"
+		end
+
+		def artist_errors(artist)
+			artist.errors.collect {|k,v| "#{k.capitalize} #{v}."}
 		end
 	end
 
