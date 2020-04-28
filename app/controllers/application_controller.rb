@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
 	end
 
 	get '/' do
-		erb :index
+		if !logged_in?
+			erb :index
+		else
+			redirect "/applications"
+		end
 	end
 
 	helpers do
@@ -27,7 +31,7 @@ class ApplicationController < Sinatra::Base
 			artist = Artist.find_by(email: email)
 			if artist && artist.authenticate(password)
 				session[:artist_id] = artist.id
-				redirect "/artists/#{artist.slug}"
+				redirect "/applications"
 			else
 				redirect "/login"
 			end
