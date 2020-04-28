@@ -4,9 +4,10 @@
 		</div>
 <% end %>
 
-
 	<div class="col-sm-6 offset-sm-3">
 		<h3><%= @artist.name %>'s Applications <span class="badge badge-pill badge-secondary"><%= @applications.count %></span></h3>
+
+		<a href="/applications/new" class="btn btn-outline-secondary btn-block mb-2">New Application</a>
 
 		<% @applications.each do |app| %>
 			<ul class="list-group mb-5">
