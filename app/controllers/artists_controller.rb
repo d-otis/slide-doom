@@ -11,17 +11,31 @@ class ArtistsController < ApplicationController
 	end
 
 	get '/artists/:slug' do
-		# protect against URL hack
-		@artist = Artist.find_by_slug(params[:slug])
+		if logged_in? 
+			if current_user == Artist.find_by_slug(params[:slug])
+				@artist = Artist.find_by_slug(params[:slug])
 
-		erb :'/artists/show'
+				erb :'/artists/show'
+			else
+				redirect "artists/#{current_user.slug}"
+			end
+		else
+			redirect "/login"
+		end
 	end
 
 	get '/artists/:slug/edit' do
-		# protect against URL hack
-		@artist = Artist.find_by_slug(params[:slug])
+		if logged_in?
+			if current_user == Artist.find_by_slug(params[:slug])
+				@artist = Artist.find_by_slug(params[:slug])
 
-		erb :'/artists/edit'
+				erb :'/artists/edit'
+			else
+				redirect "artists/#{current_user.slug}"
+			end
+		else
+			redirect "/login"
+		end
 	end
 
 	post '/artists' do

@@ -3,7 +3,7 @@ class ApplicationsController < ApplicationController
 	get '/applications' do
 		if logged_in?
 			@artist = current_user
-			@applications = @artist.applications
+			@applications = @artist.applications.order(id: :desc)
 
 			erb :'applications/index'
 		else
@@ -72,7 +72,6 @@ class ApplicationsController < ApplicationController
 	end
 
 	patch '/applications/:id' do
-		# guard against URL hacking?
 		if logged_in?
 			app = Application.find(params[:id])
 			if app.update(params[:application])
