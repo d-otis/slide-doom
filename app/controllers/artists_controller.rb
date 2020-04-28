@@ -26,13 +26,11 @@ class ArtistsController < ApplicationController
 
 	post '/artists' do
 		artist = Artist.new(params[:artist])
-		binding.pry
 		if artist.save
 			flash[:message] = "Account Successfully Created. Please log in."
 			redirect '/login'
 		else
 			flash[:message] = artist_errors(artist)
-			binding.pry
 			redirect "/register"
 		end
 	end
