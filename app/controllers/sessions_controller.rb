@@ -1,15 +1,28 @@
 class SessionsController < ApplicationController
 
 	get '/login' do
-		erb :'sessions/login'
+		if !logged_in?
+			erb :'sessions/login'
+		else
+			redirect "/artists/#{current_user.slug}"
+		end
 	end
 
 	post '/login' do
-		login(params[:artist][:email], params[:artist][:password])
+		if !logged_in?
+			login(params[:artist][:email], params[:artist][:password])
+		else
+			redirect "/login"
+		end
 	end
 
 	get '/logout' do
-		logout
+		if logged_in?
+			logout
+			redirect "/"
+		else
+			redirect "/login"
+		end
 	end
 
 end
