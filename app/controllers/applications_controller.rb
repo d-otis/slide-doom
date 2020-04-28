@@ -18,7 +18,7 @@ class ApplicationsController < ApplicationController
 			@application = Application.find(params[:id])
 			erb :'applications/show'
 		else
-			flash[:error] = "Application not found."
+			flash[:message] = "Application not found."
 			redirect "/applications"
 		end
 	end
@@ -29,7 +29,7 @@ class ApplicationsController < ApplicationController
 			@institutions = Institution.all
 			erb :'applications/edit'
 		else
-			flash[:error] = "Application not found."
+			flash[:message] = "Application not found."
 			redirect "/applications"
 		end
 
@@ -41,12 +41,13 @@ class ApplicationsController < ApplicationController
 		app.artist = current_user
 
 		if app.save
-			flash[:success] = "Application successfully created!"
+			flash[:message] = "Application successfully created!"
 			redirect "/applications/#{app.id}"
 		else
-			flash[:error] = app.errors.messages.collect do |k, v|
+			flash[:message] = app.errors.messages.collect do |k, v|
 				"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
 			end
+			
 			redirect "applications/new"
 		end
 	end
@@ -55,11 +56,11 @@ class ApplicationsController < ApplicationController
 		# guard against URL hacking?
 		app = Application.find(params[:id])
 		if app.update(params[:application])
-			flash[:success] = "Successfully updated application."
+			flash[:message] = "Successfully updated application."
 
 			redirect "applications/#{app.id}"
 		else
-			flash[:error] = app.errors.messages.collect do |k, v|
+			flash[:message] = app.errors.messages.collect do |k, v|
 				"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
 			end
 

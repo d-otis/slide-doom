@@ -1,4 +1,11 @@
-<%= erb :'/applications/messages/errors/new' %>
+
+<% if flash.has?(:message) %>
+		<div class="col-sm-6 offset-sm-3">
+			<% flash[:message].each do |msg| %>
+			<div class="alert alert-danger text-center"><%= msg %></div>
+			<% end %>
+		</div>
+<% end %>
 
 <div class="col-sm-6 offset-sm-3">
 	<h2>Application for: <%= current_user.name %></h2>

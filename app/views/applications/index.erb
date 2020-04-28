@@ -1,6 +1,8 @@
-<%= erb :"/applications/messages/errors/index" %>
-<%= erb :"/applications/messages/success/index" %>
-
+<% if flash.has?(:message) %>
+		<div class="col-sm-6 offset-sm-3">
+			<div class="alert alert-secondary text-center"><%= flash[:message] %></div>	
+		</div>
+<% end %>
 
 <%= '<div class="row">' if flash.has?(:error) || flash.has?(:success) %>
 	<div class="col-sm-6 offset-sm-3">

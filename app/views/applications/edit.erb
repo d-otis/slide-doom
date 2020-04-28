@@ -1,7 +1,7 @@
 
-<% if flash.has?(:error) %>
-		<div class="col-sm-12">
-			<% flash[:error].each do |msg| %>
+<% if flash.has?(:message) %>
+		<div class="col-sm-6 offset-sm-3">
+			<% flash[:message].each do |msg| %>
 			<div class="alert alert-danger text-center"><%= msg %></div>
 			<% end %>
 		</div>

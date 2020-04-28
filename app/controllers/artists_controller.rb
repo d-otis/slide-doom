@@ -26,21 +26,25 @@ class ArtistsController < ApplicationController
 
 	post '/artists' do
 		artist = Artist.new(params[:artist])
+		binding.pry
 		if artist.save
-			flash[:success] = "Account Successfully Created. Please log in."
+			flash[:message] = "Account Successfully Created. Please log in."
 			redirect '/login'
 		else
-			flash[:error] = artist.errors.collect {|k,v| "#{k.capitalize} #{v}."}
-			
+			flash[:message] = artist_errors(artist)
+			binding.pry
 			redirect "/register"
 		end
-
 	end
 
 	patch '/artists/:slug' do
 		artist = Artist.find_by_slug(params[:slug])
-		artist.update(params[:artist])
-
-		redirect "/artists/#{artist.slug}"
+		
+		if artist.update(params[:artist])
+			redirect "/artists/#{artist.slug}"
+		else
+			flash[:message] = artist_errors(artist)
+			redirect "artists/#{params[:slug]}/edit"
+		end
 	end
 end

@@ -1,4 +1,8 @@
-<%= erb :"/applications/messages/success/show" %>
+<% if flash.has?(:message) %>
+		<div class="col-sm-6 offset-sm-3">
+			<div class="alert alert-success text-center"><%= flash[:message] %></div>	
+		</div>
+<% end %>
 
 <div class="col-sm-6 offset-sm-3">
 	<h1>Application <span class="badge badge-pill badge-secondary"><%# @application.count %></span></h1>
