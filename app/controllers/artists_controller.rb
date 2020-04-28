@@ -36,9 +36,11 @@ class ArtistsController < ApplicationController
 		artist = Artist.new(params[:artist])
 		if artist.save
 			flash[:message] = "Account Successfully Created. Please log in."
+
 			redirect '/login'
 		else
-			flash[:message] = artist_errors(artist)
+			flash[:message] = errors(artist)
+
 			redirect "/register"
 		end
 	end

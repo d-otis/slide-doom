@@ -42,8 +42,8 @@ class ApplicationController < Sinatra::Base
 			redirect "/"
 		end
 
-		def artist_errors(artist)
-			artist.errors.collect {|k,v| "#{k.capitalize} #{v}."}
+		def errors(resource)
+			resource.errors.messages.collect {|k, v| "#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"}
 		end
 	end
 

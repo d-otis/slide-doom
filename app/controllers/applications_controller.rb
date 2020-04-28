@@ -60,9 +60,7 @@ class ApplicationsController < ApplicationController
 				flash[:message] = "Application successfully created!"
 				redirect "/applications/#{app.id}"
 			else
-				flash[:message] = app.errors.messages.collect do |k, v|
-					"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
-				end
+				flash[:message] = errors(app)
 				
 				redirect "applications/new"
 			end
@@ -79,9 +77,7 @@ class ApplicationsController < ApplicationController
 
 				redirect "applications/#{app.id}"
 			else
-				flash[:message] = app.errors.messages.collect do |k, v|
-					"#{k.to_s.capitalize.gsub("_", " ")} #{v.join}"
-				end
+				flash[:message] = errors(app)
 
 				redirect "/applications/#{app.id}/edit"
 			end
