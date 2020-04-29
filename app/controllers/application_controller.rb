@@ -1,5 +1,3 @@
-require_relative "../models/concerns/slugify"
-
 class ApplicationController < Sinatra::Base
 	use Rack::Flash
 	register Sinatra::ActiveRecordExtension

@@ -6,8 +6,8 @@ class ArtistsController < ApplicationController
 
 	get '/artists/:slug' do
 		if logged_in? 
-			if current_user == Artist.find_by_slug(params[:slug])
-				@artist = Artist.find_by_slug(params[:slug])
+			if current_user == Artist.friendly.find(params[:slug])
+				@artist = Artist.friendly.find(params[:slug])
 
 				erb :'/artists/show'
 			else
@@ -20,8 +20,8 @@ class ArtistsController < ApplicationController
 
 	get '/artists/:slug/edit' do
 		if logged_in?
-			if current_user == Artist.find_by_slug(params[:slug])
-				@artist = Artist.find_by_slug(params[:slug])
+			if current_user == Artist.friendly.find(params[:slug])
+				@artist = Artist.friendly.find(params[:slug])
 
 				erb :'/artists/edit'
 			else
@@ -46,7 +46,7 @@ class ArtistsController < ApplicationController
 	end
 
 	patch '/artists/:slug' do
-		artist = Artist.find_by_slug(params[:slug])
+		artist = Artist.friendly.find(params[:slug])
 		
 		if artist.update(params[:artist])
 			redirect "/artists/#{artist.slug}"
@@ -59,9 +59,9 @@ class ArtistsController < ApplicationController
 	delete '/artists/:slug' do
 		# protect against URL hacking
 		if logged_in?
-			artist = Artist.find_by_slug(params[:slug])
+			artist = Artist.friendly.find(params[:slug])
 			if current_user == artist
-				artist = Artist.find_by_slug(params[:slug])
+				artist = Artist.friendly.find(params[:slug])
 				artist.destroy
 
 				logout

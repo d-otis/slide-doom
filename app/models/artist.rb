@@ -1,6 +1,7 @@
 class Artist < ActiveRecord::Base
-	include SlugMod::Slugify
-	extend SlugMod::ClassMethods
+	extend FriendlyId
+
+	friendly_id :name, use: :slugged
 
 	has_many :applications, :dependent => :destroy
 	
