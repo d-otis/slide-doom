@@ -7,8 +7,12 @@
 	    <li class="list-group-item">Name: <%= @artist.name %></li>
 	    <li class="list-group-item">Email: <%= @artist.email %></li>
 	  </ul>
-	  <div class="card-body py-2 pl-3">
-	  	<a href="/artists/<%= @artist.slug %>/edit" class="card-link"><i class="far fa-edit"></i> Edit Profile</a>
+	  <div class="d-flex justify-content-start align-items-center card-body py-2 pl-3">
+	  	<a href="/artists/<%= @artist.slug %>/edit" class="btn btn-outline-secondary"><i class="far fa-edit"></i> Edit Profile</a>
+	  	<form action="/artists/<%= @artist.slug %>" method="POST">
+	  		<input type="hidden" name="_method" value="DELETE">
+	  		<input type="submit" value="Delete Account" class="btn btn-outline-danger ml-2">
+	  	</form>
 	  </div>
 	</div>
 </div>
