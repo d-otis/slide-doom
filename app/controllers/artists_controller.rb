@@ -55,4 +55,21 @@ class ArtistsController < ApplicationController
 			redirect "artists/#{params[:slug]}/edit"
 		end
 	end
+
+	delete '/artists/:slug' do
+		# protect against URL hacking
+		if logged_in?
+			artist = Artist.find_by_slug(params[:slug])
+			if current_user == artist
+				artist = Artist.find_by_slug(params[:slug])
+				artist.destroy
+
+				logout
+			else
+				redirect "/artists/#{current_user.slug}"
+			end
+		else
+			redirect "/login"
+		end
+	end
 end
