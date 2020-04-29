@@ -7,4 +7,5 @@ A simplified version of the popular application submission service, SlideRoom.
 
 1. clone this repo
 1. once inside the new directory ```bundle install``` the gems
+1. you'll want to change the ```:session_secret``` to something more secure
 1. run from the command line by typing ```shotgun``` 
