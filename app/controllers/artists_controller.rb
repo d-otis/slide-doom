@@ -57,7 +57,6 @@ class ArtistsController < ApplicationController
 	end
 
 	delete '/artists/:slug' do
-		# protect against URL hacking
 		if logged_in?
 			artist = Artist.friendly.find(params[:slug])
 			if current_user == artist
