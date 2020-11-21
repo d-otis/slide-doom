@@ -1,3 +1,4 @@
 db/development.sqlite
 db/seeds.rb
 notes.md
+.env
